@@ -4,8 +4,8 @@ library(readxl)
 library(openintro)
 library(ggplot2)
 
-college_aid <- read_excel("college aid 2000-2022.xlsx", skip = 2)
-college_aid <- college_aid |>
+college_aid_2000_2022 <- read_excel("college aid 2000-2022.xlsx", skip = 2)
+college_aid <- college_aid_2000_2022 |>
   rename(Year = `Control and level of institution, and year`)
 
 college_aid <- college_aid |>
