@@ -2,12 +2,15 @@
   "name": "student_loan_analysis",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://rileysuomi.github.io/student_loan_debt_analysis",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^19.0.0",
