@@ -1,3 +1,4 @@
+import ShinyApp1 from "./ShinyApp1";
 
 export default function ResultsSection() { 
 
@@ -16,6 +17,8 @@ export default function ResultsSection() {
                     Will have to figure out how to add the interactive visualizations to this section.
                     For non-interactive plots we can simply upload as a .png
                 </p>
+
+                <ShinyApp1 />
             </div>
         </div>
     )
