@@ -10,6 +10,10 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./student_loan_analysis
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
