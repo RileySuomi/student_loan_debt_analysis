@@ -49,7 +49,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './student_loan_analysis/dist'
+          # Upload directly from dist folder without the extra path
+          path: 'student_loan_analysis/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
