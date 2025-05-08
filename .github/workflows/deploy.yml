@@ -1,4 +1,4 @@
-name: Deploy to Pages
+name: Deploy to Pages with Fixes
 
 on:
   push:
@@ -43,13 +43,53 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Verify build output
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+          
+          // Path to dist directory
+          const distDir = path.join(__dirname, 'dist');
+          
+          // List important files
+          console.log('Important files in dist:');
+          if (fs.existsSync(path.join(distDir, 'index.html'))) {
+            console.log('✅ index.html exists');
+          } else {
+            console.log('❌ index.html missing');
+          }
+          
+          // Check assets directory
+          const assetsDir = path.join(distDir, 'assets');
+          if (fs.existsSync(assetsDir)) {
+            console.log('assets directory exists');
+            const assets = fs.readdirSync(assetsDir);
+            console.log('Assets:', assets);
+          } else {
+            console.log('assets directory missing');
+          }
+          
+          // Read index.html to check references
+          const indexContent = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
+          console.log('index.html content snippet:');
+          console.log(indexContent.substring(0, 500) + '...');
+          "
+
+      - name: Create _headers file for custom headers
+        run: |
+          cat > dist/_headers << EOF
+          /*
+            Cache-Control: max-age=180
+            X-Content-Type-Options: nosniff
+          EOF
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload directly from dist folder without the extra path
           path: 'student_loan_analysis/dist'
 
       - name: Deploy to GitHub Pages
