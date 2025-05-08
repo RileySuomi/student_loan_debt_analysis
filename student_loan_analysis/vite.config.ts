@@ -11,9 +11,6 @@ export default defineConfig({
     tailwindcss(), 
   ],
   base: '/student_loan_analysis/',
-  // build: {
-  //   outDir: 'docs'  // Change output directory to "docs"
-  // },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
